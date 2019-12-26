@@ -23,7 +23,7 @@
             {{item.snippet.title}}
              <v-dialog  v-model="dialog"  hide-overlay transition="dialog-bottom-transition">
                         <template v-slot:activator="{ on }">
-                            <v-btn class="my-3" block color="primary" v-on="on" >شاهد الفيديو </v-btn>
+                            <v-btn  block color="primary" v-on="on" >شاهد الفيديو </v-btn>
                         </template>
                         <v-card>
                             <v-toolbar dark color="primary">
@@ -41,9 +41,9 @@
                                         {{item.snippet.title}}
                                     </v-toolbar-title>                            
                                 </v-toolbar>
-                            <v-card-text class=" text-center">
-                                <iframe class="ma-3 text-center"
-                                 :src="`https://www.youtube.com/embed/${item.snippet.resourceId.videoId}`">
+                            <v-card-text   class=" text-center">
+                                <iframe  class="ma-3 text-center" :src="`https://www.youtube.com/embed/${item.id}`" 
+                                >
                                 </iframe>
                             </v-card-text>
                         </v-card>
@@ -64,12 +64,27 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      dialog:false, 
       card_text:
         'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore repudiandae quos, sint hic dolores ab reiciendis numquam optio perspiciatis magni iure earum deserunt! Eius tempore placeat harum, iusto ut qui',
-      alignment: 'center', 
+      // alignmentsAvailable: [
+      //   'start',
+      //   'center',
+      //   'end',
+      //   'baseline',
+      //   'stretch',
+      // ],
+      alignment: 'center',
+      // dense: false,
+      // justifyAvailable: [
+      //   'start',
+      //   'center',
+      //   'end',
+      //   'space-around',
+      //   'space-between',
+      // ],
       justify: 'center',
-      playlist:[]
+      playlist:[],
+      dialog:false
     };
   },
   created() {
@@ -80,14 +95,14 @@ export default {
       axios
         
           // 'https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLfY-m4YMsF-OM1zG80pMguej_Ufm8t0VC&key=AIzaSyCnGeoYhG3HXL6j8bIH-mwgwCHYyqdBW4s')
-          .get("https://www.googleapis.com/youtube/v3/playlistItems", {
+          .get("https://www.googleapis.com/youtube/v3/videos", {
         params: {
           part: "snippet,contentDetails",
           // forUsername: "UC4gEsWaYy8V09Ej2TyNkLcg",
           // channelId:"UC4gEsWaYy8V09Ej2TyNkLcg",
-          // id:"VIDEO_ID",
-          playlistId:"PLgVz16tL0L-vilcFoUvxKsT6tqM_gSCt7",
-          maxResults:"26",
+          id:"C82JumO4cOU",
+        //   playlistId:"PLgVz16tL0L-vilcFoUvxKsT6tqM_gSCt7",
+        //   maxResults:"26",
           // client_id:"292824132082",
           key: "AIzaSyDjC7e6bIR1tUWxQYengZNO8SY1VMBHraA" 
         }
